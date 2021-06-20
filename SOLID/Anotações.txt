@@ -1,0 +1,26 @@
+Anotações - Curso SOLID
+
+- Coesão: harmonia, coisas em comum. Exemplo: atributos que não
+fazem sentido em determinada classe, muitas resposabilidades. Uma 
+classe coesa faz bem uma única coisa;
+
+- Encapsulamento: vai além dos atributos privados e get/set. Exemplo:
+salário, para alterar, passa por validações (protegendo para passar
+pelas regras de negócio). Neste exemplo se houvesse apenas o set do
+salário, estaria violando o encapsulamento, sem passar pelas regras de
+Getters e setters não são formas eficientes de encapsulamento. Fornecer
+acesso apenas ao que for necessário da classe;
+
+- Acoplamento: deve ser utilizado com cuidado, causa muita dependência e
+manutenção. Falta de encapsulamento leva a um acoplamento maior.
+
+
+
+
+
+
+
+
+
+
+
