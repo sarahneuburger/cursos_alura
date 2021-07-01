@@ -34,7 +34,9 @@ public class FluxoComTratamento {
 			
 			// Só é executado em caso dessa exceção específica
 			// Usar pipe para "ou" colocar várias exceções no mesmo catch
-		} catch (ArithmeticException | NullPointerException e) {
+			// Como todas as exceções herdam de Exception, o catch chamado somente ela
+			// é suficiente para capturar todo tipo de exceção, "genérico"
+		} catch (Exception e) {
 			System.out.println("ArithmeticException " + e.getMessage());
 			// Printa o rastro da pilha
 			e.printStackTrace();
@@ -42,13 +44,13 @@ public class FluxoComTratamento {
 		}
 	}
 
-	private static void metodo1() {
+	private static void metodo1() throws ExceptionChecked {
 		System.out.println("Ini do metodo1");
 		metodo2();
 		System.out.println("Fim do metodo1");
 	}
 
-	private static void metodo2() {
+	private static void metodo2() throws ExceptionChecked {
 	    System.out.println("Ini do metodo2");
 	    for(int i = 1; i <= 5; i++) {
 	    	System.out.println(i);
