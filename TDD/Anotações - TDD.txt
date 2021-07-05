@@ -1,0 +1,16 @@
+TDD
+
+-- Testes manuais
+- Lentos
+- Sujeito a falhas
+
+-- Automatização
+- Feedback mais rápido
+- Segurança ao mexer no código
+- Favorece a melhoria no código (factoring)
+
+-- JUnit
+- Referência no Java
+- Criada em 1995
+- Gratuíto e open
+- Foco em teste unitário
