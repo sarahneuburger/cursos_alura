@@ -23,19 +23,21 @@ class FinalizarLeilaoServiceTest {
 	@Mock
 	private LeilaoDao dao;
 	
+	@Mock
+	private EnviadorDeEmails email;
+	
 	@BeforeEach
 	public void beforeEach() {
 		// Ler anotações do mockito
 		MockitoAnnotations.initMocks(this);
 		
-		
-		
-		this.service = new FinalizarLeilaoService(dao);
+		this.service = new FinalizarLeilaoService(dao, email);
 	}
 
 	@Test
 	void deveriaFinalizarUmLeilao() {
 		List<Leilao> leiloes = leiloes();;
+		// Simular ação
 		Mockito.when(dao.buscarLeiloesExpirados()).thenReturn(leiloes);
 		service.finalizarLeiloesExpirados();
 		Leilao leilao = leiloes.get(0);
@@ -44,6 +46,33 @@ class FinalizarLeilaoServiceTest {
 				leilao.getLanceVencedor().getValor());
 		// Assert do próprio mockito para verificar se o método foi chamado
 		Mockito.verify(dao).salvar(leilao);
+	}
+	
+	@Test
+	void deveriaEmailParaVencedorLeilao() {
+		List<Leilao> leiloes = leiloes();;
+		// Simular ação
+		Mockito.when(dao.buscarLeiloesExpirados()).thenReturn(leiloes);
+		// Configurando comportamento para lançar exceção
+		// tipo any, pois aceita qualquer coisa
+		Mockito.when(dao.salvar(Mockito.any())).thenThrow(RuntimeException.class);
+		try {
+			service.finalizarLeiloesExpirados();
+			// Verificar que não foi chamado
+			Mockito.verifyNoInteractions(email);
+		} catch (Exception e) {}
+	}
+	
+	@Test
+	void naoDeveriaEmailParaVencedorLeilaoEmCasoDeErroAoEncerrarOLeilao() {
+		List<Leilao> leiloes = leiloes();;
+		// Simular ação | configuração do mock
+		Mockito.when(dao.buscarLeiloesExpirados()).thenReturn(leiloes);
+		service.finalizarLeiloesExpirados();
+		Leilao leilao = leiloes.get(0);
+		Lance lanceVencedor = leilao.getLanceVencedor();
+		// Assert do próprio mockito para verificar se o método foi chamado
+		Mockito.verify(email).enviarEmailVencedorLeilao(lanceVencedor);
 	}
 	
 	// Alimentado o mock

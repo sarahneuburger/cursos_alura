@@ -13,15 +13,18 @@ import br.com.alura.leilao.model.Leilao;
 @Service
 public class FinalizarLeilaoService {
 
+	
+	private LeilaoDao leiloes;
+	private EnviadorDeEmails enviarEmail;
+	
 	// Boa prática quando há testes unitários, é passar as injeções de dependência
 	// no construtor
 	@Autowired
-	public FinalizarLeilaoService(LeilaoDao leiloes) {
+	public FinalizarLeilaoService(LeilaoDao leiloes, EnviadorDeEmails enviarEmail) {
 		this.leiloes = leiloes;
+		this.enviarEmail = enviarEmail;
 	}
 	
-	private LeilaoDao leiloes;
-
 	public void finalizarLeiloesExpirados() {
 		List<Leilao> expirados = leiloes.buscarLeiloesExpirados();
 		expirados.forEach(leilao -> {
@@ -29,6 +32,8 @@ public class FinalizarLeilaoService {
 			leilao.setLanceVencedor(maiorLance);
 			leilao.fechar();
 			leiloes.salvar(leilao);
+			
+			enviarEmail.enviarEmailVencedorLeilao(maiorLance);
 		});
 	}
 
