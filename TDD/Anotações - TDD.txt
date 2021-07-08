@@ -14,3 +14,10 @@ TDD
 - Criada em 1995
 - Gratuíto e open
 - Foco em teste unitário
+
+-- Vantagens
+- Método já termina testado
+- Evita testes viciados (pensando na implementação)
+- Refatoração faz parte do projeto
+- Ajuda a manter o foco
+- Temos a "tendência" em escrever um código mais simples
