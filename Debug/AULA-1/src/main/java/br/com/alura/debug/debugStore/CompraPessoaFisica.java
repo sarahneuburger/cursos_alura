@@ -18,6 +18,14 @@ import br.com.alura.debug.debugStore.modelo.Produto;
  *
  * Step Return (F7): retorna ao método anterior e só funciona quando o Step Into é acionado antes.
  *
+ * Breakpoint condicional - botão direito sobre o breakpoint - breakpoint preferences -
+ * Assinalar check para condicional - preencher condição
+ * 
+ * Por padrão, o debug para em exceções não tratadas, porém, é uma opção pode ser marcada
+ * nas preferências da IDE. Pode escolher para parar somente nas exceções necessárias.
+ * Na tela de breakpoints, existe uma opção (Add java exception breakpoint) onde é cadastrada 
+ * a classe da exceção que será condição para parar o debug.
+ *
  */
 public class CompraPessoaFisica {
 	

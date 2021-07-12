@@ -8,7 +8,19 @@ import br.com.alura.debug.debugStore.modelo.CarrinhoCompra;
 import br.com.alura.debug.debugStore.modelo.Categoria;
 import br.com.alura.debug.debugStore.modelo.FormaPagamento;
 import br.com.alura.debug.debugStore.modelo.Produto;
-
+/**
+ * Comando watch
+ * 
+ * Para acompanhar uma variável específica.
+ * Clicar com o botão direito sobre a variável e clicar em Watch.
+ * Vai abrir uma nova aba "Expressions" onde a variável será monitorada.
+ * 
+ * Comando Inspect
+ * Definido para determinado método, pula direto para ele, sem precisar 
+ * debugar todo o código. Estar na linha específica do método e clicar
+ * CTRL + Shift + I.
+ *
+ */
 public class CompraPessoaJuridica {
 	
 	public static void main(String[] args) {
