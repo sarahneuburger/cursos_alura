@@ -1,0 +1,232 @@
+Anotações
+
+- Debug Remoto -
+
+* Acessar programa por meio de "Macintosh HD > Biblioteca > Tomcat";
+* Dentro da pasta do programa, temos as pastas "bin", bastante importante, 
+	com arquivos a serem rodados e capaz de pausar o servidor, a "lib", 
+	com bibliotecas do próprio container, a pasta "logs", e "webapps", 
+	onde ficam as aplicações deployadas contidas no servidor.
+
+* Abrindo a pasta "webapps", encontraremos o arquivo listavipServlet.war, em 
+	que se realiza o deploy. Após criação de um arquivo .war, ao subir-se 
+	o container, retira-se do .war, fazendo deploy e criando uma pasta d
+	enominada "listavipServlet", mesmo nome da versão .war.
+
+* Para iniciarmos a simulação, precisamos pegar este artefato (.war) e fazer 
+	seu deploy no Tomcat, após o qual começa-se o processo de Debug 
+	propriamente dito. Primeiramente, vamos ver como se faz este deploy.
+
+* Queremos parar o Tomcat pelo terminal, tirar a aplicação de lá e colocar a 
+	nova, como se fosse uma atualização. Abriremos o terminal, por meio 
+	da qual acessaremos a pasta do Tomcat pela raiz. Acessando-se o "bin", 
+	pode-se derrubar ou subir o servidor. Queremos, neste momento, derrubá-lo 
+	(./shutdown.sh), portanto precisaremos executar o arquivo.
+
+* Recarregaremos a página para verificar se isto foi feito realmente, e em seguida, 
+	vamos voltar à pasta "webapps". Queremos refazer o deploy da mesma aplicação,
+	sendo recomendável, portanto, apagar a versão anterior dela.
+
+* Copiamos e colamos este listavipServlet.war à pasta "webapps". Quando ocorrer o 
+	"start", será gerada uma pasta homônima, que será a aplicação em si. Para 
+	subir a aplicação, voltaremos ao terminal, utilizando o ./catalina.sh. Antes 
+	de rodar este comando, porém, precisamos que o container deixe uma porta aberta 
+	para quando o Eclipse for debugar e chegar ao Tomcat, à container.
+
+* Esta comunicação é feita pelo JPDA (ou Java Platform Debugger Architecture), "arquitetura
+	de Debug da plataforma Java". O Tomcat precisa subir com esta configuração, 
+	encontrada no comando ./catalina.sh.
+
+* Para entendermos isto melhor, abriremos a pasta "bin" no Atom. Selecionaremos o 
+	arquivo catalina.sh e buscaremos a porta 8000, que é a da JPDA. Precisaremos nos 
+	atentar a esta porta, através da qual o Tomcat subirá. Voltando ao terminal e dentro
+	da pasta "bin", digitaremos ./catalina.sh jpda start.
+
+* Por ser um projeto web, não há a opção de baixarmos neste modo pelo Git. Para isto, clicaremos 
+	em cima do arquivo, no lado esquerdo da tela, selecionando "Properties". Na janela nova, 
+	selecionamos "Project Facets", clicando no link "Convert to faceted form...", que 
+	realizará a conversão para uma aplicação web. Ali, duas opções precisam estar marcadas: 
+	Java, na versão 1.8, e Dynamic Web Module, na versão 3.0. Por fim, apertamos "Apply" e 
+	"OK" em seguida. O projeto foi baixado e transformado em um projeto web.
+
+* Agora, temos o Tomcat rodando de um lado, sendo iniciado em modo JPDA na porta 8000, e podemos 
+	finalmente partir para o Debug.
+
+* Fizemos uma configuração específica para isto, então clicaremos com o lado direito do mouse 
+	no botão "Debug ConvidadoRepository.java", selecionando a opção "Debug Configurations", 
+	indo à "Remote Java Application" e apertando o lado direito do mouse novamente, selecionando 
+	"New". Faremos uma nova conexão, denominada "ProjetoListaVipServlet".
+
+* O Host se refere à localização do Tomcat; se ele for encontrado em outro IP, basta inseri-lo ali. 
+	Clicaremos em "Apply" para salvar estas configurações, e em "Debug" posteriormente. Feito isto, 
+	executaremos a aplicação novamente, tentando cadastrar aqueles dados repassados pelo cliente 
+	que está com problemas.
+
+* Voltamos à aplicação, submeteremos os dados do usuário e a janela é alternada automaticamente para 
+	o Eclipse, que nos pergunta se queremos mudar a perspectiva para Debug. Selecionamos "Yes", 
+	e repetiremos os passos vistos em vídeos anteriores, com F6 ou "Step Over" para caminharmos 
+	linha a linha.
+
+* Criou-se a conexão, que verificamos na aba "Variables", uma string insert, o preparedStatement, 
+	e a execução. Houve um erro no execute(), pulando-se para o final. O programador colocou até um 
+	Try/Catch, que foi completamente omitido. É uma má prática, visto que foi colocado um Try/Catch 
+	para tratar uma exceção que, quando lançada, não foi nem printada, ou seja, não conseguimos 
+	nem ver esta exceção no log.
+
+* Vamos deixar a aplicação seguir para ver se aparece mais algo, a partir de F8 (ou "Resume"). Nada 
+	apareceu, então vamos acessar o log do Tomcat. Para isto, abriremos o terminal, digitando cd .. 
+	para sairmos da pasta bin, onde estávamos anteriormente, para acessarmos a pasta logs.
+
+* O comando tail -f serve para pegar o final do arquivo, que no caso é catalina.out, arquivo de saída 
+	do log. Não aparece nenhum erro de log, pois o erro não foi printado, como dissemos.
+
+* Não é a melhor opção, porém é o básico: vamos imprimir este StackTrace(), acrescentando as seguintes 
+	linhas após o catch na aba ConvidadoRepository.java.
+
+* Salvaremos e rodaremos a aplicação mais uma vez, voltando à página de cadastro e inserindo todos 
+	aqueles dados do usuário novamente. Somos levados de volta ao Eclipse, e vamos pulando 
+	linha a linha, desta vez passando de execute para o Try, pelo menos. Houve um print, então 
+	apertaremos o "Resume" e deixaremos a aplicação rodar.
+
+* No terminal, verificaremos se o arquivo catalina.out está rodando. Encontraremos a mensagem Data 
+	truncation: Data too long for column 'nome' at row 1, ela nos indica que o nome do convidado 
+	está muito comprido.
+
+* Na aba "mysql" do terminal, digitaremos show tables; para visualizarmos como está a coluna "nome" 
+	e saber quantos caracteres podemos colocar ali.
+
+* Temos a exceção a ser capturada e mostrada ao usuário. Quando houverem exceções, mapeamos ao 
+	servlet de erro a partir de web.xml em "listavipServlet > WebContent > WEB-INF > web.xml", 
+	à qual incluiremos uma página de erro, com duas tags, <exception-type> e <location>:
+
+<error-page>
+  <exception-type>java.lang.Exception</exception-type>
+  <location>/error</location>
+</error-page>
+
+* Salvaremos estas alterações, e agora todas as exceções serão lançadas ao servlet. Ao alterarmos 
+	o código, podemos salvá-lo e a alteração será refletida no Tomcat. Porém, como modificamos 
+	o web.xml, precisaremos fazer um deploy novo.
+
+* Para isto, precisamos gerar o .war, artefato a ser colocado no Tomcat, para realizarmos um deploy 
+	em produção. Vamos clicar com o lado direito do mouse na pasta listavipServlet, exibido ao 
+	lado esquerdo da página, selecionando "Export > WAR file". Na janela que se abriu, criaremos 
+	uma pasta nova de destino, a qual denominaremos "novo_deploy", clicando em "Finish" depois.
+
+* Iremos ao Tomcat, pausaremos o servidor, limparemos, colocaremos o .war novo, após o qual subiremos 
+	o servidor novamente. No terminal, nos encontramos na pasta "logs". Subiremos um nível e 
+	entraremos na pasta "bin" e, com o comando ./shutdown.sh, derrubaremos o servidor.
+
+* Voltando ao "Finder" (Arquivos), selecionaremos os arquivos abaixo, deletando-os em seguida.
+
+* Acessando-se "Mesa > projetoWeb > novo_deploy", encontraremos o arquivo listavipServlet.war atualizado. 
+	Copiaremos e colaremos em "webapps". Vamos subir o servidor novamente utilizando o JPDA, como visto 
+	em vídeo anteior. No terminal, digitaremos ./catalina.sh jpda start. Verificaremos estas alterações 
+	no browser, abrindo a url localhost:8080/listavipServlet.
+
+* O link está funcionando corretamente, então vamos tentar simular o cadastro novamente para verificar se 
+	desta vez a exceção é lançada ao usuário. Ao completarmos o formulário e clicarmos em "Convidar", 
+	somos redirecionados a esta página de erro:
+
+* Trata-se de uma tela de erro em desenvolvimento, sendo que não é recomendável colocar este tipo de 
+	informação à disposição, pois pode ocorrer de ser um erro de segurança, por exemplo, informação que 
+	é melhor evitar deixar vulnerável.
+
+* Caso você queira que outra página de erro seja mostrada, basta ir à aba ErrorController.java e fazer 
+	outro redirecionamento, ou alterar o texto referente, o que achar melhor, apenas tomando cuidado 
+	com questões de segurança do site - existem cursos sobre isto na Alura, a partir dos quais é 
+	possível obter maiores informações sobre o assunto.
+
+* Como alteramos o arquivo .jsp, precisaremos refazer o deploy no Tomcat, repetindo os procedimentos 
+	feitos anteriormente: clicando-se na pasta do projeto com o lado direito do mouse, selecionando "Export 
+	> WAR file", tendo como destino a mesma pasta novo_deploy, pois sobrescreveremos os arquivos.
+
+* O .war novo foi gerado, pausaremos o Tomcat, copiaremos e colaremos este arquivo na pasta "webapps", 
+	substituindo as versões anteriores, subindo novamente o servidor (por meio de ./catalina.sh jpda 
+	start). Vamos ao navegador verificar a alteração feita. Na raiz, apertaremos o botão "Clique aqui 
+	para ver a lista de convidados", colocando os dados do usuário no formulário.
+
+* Para mostrar que já temos um servlet de erro em ErrorController.java, após seu recebimento precisaremos 
+	enviá-lo à tela do usuário. Idealmente, teremos que lançar a exceção até o servlet para que se possa 
+	capturar o erro, jogando-o (throw) de volta para o usuário, para que ele saiba o que está acontecendo. 
+	Então, o código fica assim:
+
+public void salvar(Convidado convidado){
+
+  try {
+    //...
+
+  } catch (SQLException e) {
+    e.printStackTrace();
+    throw new SQLException();
+  }
+
+}
+
+* Agora sim, já temos a exceção a ser capturada e mostrada ao usuário. Quando houverem exceções, mapeamos 
+	ao servlet de erro a partir de web.xml em "listavipServlet > WebContent > WEB-INF > web.xml", à 
+	qual incluiremos uma página de erro, com duas tags, <exception-type> e <location>:
+
+<error-page>
+  <exception-type>java.lang.Exception</exception-type>
+  <location>/error</location>
+</error-page>
+
+* Salvaremos estas alterações, e agora todas as exceções serão lançadas ao servlet. Ao alterarmos o 
+	código, podemos salvá-lo, e a alteração é refletida no Tomcat. Porém, como modificamos o web.xml, 
+	faremos um deploy novo.
+
+* Para isto, precisaremos gerar o .war, artefato a ser colocado no Tomcat, para realizarmos um deploy em 
+	produção. Vamos clicar com o lado direito do mouse na pasta listavipServlet, exibido ao lado 
+	esquerdo da página, selecionando "Export > WAR file". Na janela que se abriu, criaremos uma pasta 
+	nova de destino, a qual denominaremos "novo_deploy", clicando em "Finish" depois.
+
+* Iremos ao Tomcat, pausaremos o servidor, limparemos, colocaremos o .war novo, após o qual subiremos o 
+	servidor novamente. No terminal, nos encontramos na pasta "logs". Subiremos um nível e entraremos 
+	na pasta "bin" e, com o comando ./shutdown.sh, derrubamos o servidor.
+
+* Voltando ao "Finder" (Arquivos), selecionaremos os arquivos abaixo, deletando-os em seguida.
+
+* Acessando-se "Mesa > projetoWeb > novo_deploy", encontramos o arquivo listavipServlet.war atualizado. 
+	Copiaremos e colaremos em "webapps". Vamos subir o servidor novamente utilizando o JPDA, como 
+	visto anteriormente. No terminal, digitaremos ./catalina.sh jpda start. Verificamos estas alterações 
+	no browser, abrindo a url localhost:8080/listavipServlet.
+
+* O link está funcionando corretamente, então vamos tentar simular o cadastro novamente para verificar 
+	se desta vez a exceção é lançada ao usuário. Ao completarmos o formulário e clicarmos em "Convidar", 
+	somos redirecionados a esta página de erro.
+
+----
+
+REVISÃO
+
+* Vamos revisar o que foi visto até agora: fizemos um Debug remoto instalando o Tomcat e colocando 
+	nele a aplicação web, simulando um servidor qualquer (da Amazon, Heroku, ou inclusive a sua 
+	própria máquina), a partir do qual fizemos deploy conectando esta aplicação ao Eclipse IDE 
+	para debugarmos utilizando o JPDA - lembrando que ele é configurado por meio de ./catalina.sh, 
+	do Tomcat, editável em qualquer programa de sua preferência.
+
+* Subimos o servidor novamente, cujo container tem este JPDA configurado (./catalina.sh jpda start), 
+	e será liberada a porta 8000, para então realizarmos o Debug remoto. Abrimos nossa aplicação no 
+	Eclipse e clicaremos no botão localizado ao lado do de Debug, selecionando "Debug Configurations..." 
+	e depois "Remote Java Application", criando-se nova conexão com esta nova aplicação.
+
+* Clicando com o lado direito do mouse em "Remote Java Application", configura-se nome, projeto, endereço 
+	de host, a porta em que se configurou o JPDA, entre outros. Durante a aula, criamos estas configurações:
+
+* Em seguida, colocamos a aplicação para rodar, algo que ocorre mesmo ela estando em outro local, outro host. 
+	Vimos também que, ao verificarmos um código legado no ConvidadoRepository.java, havia um Try/Catch 
+	inútil para capturar a exceção.
+
+* Realizamos então uma manutenção, colocando e.printStackTrace(); para printar no log, lançando a exceção 
+	para o servlet e, em ConvidadoServlet.java a tratamos e relançamos por meio de um servlet de erro, 
+	o ErrorController.java.
+
+* Também alteramos o arquivo web.xml para a captura das exceções desta aplicação web, e modificamos o 
+	banco de dados para corrigir o erro e caberem mais caracteres na coluna de "nome", acrescentando-se 
+	maxlength na tag caso não se tenha acesso ao banco de dados. Assim, limitamos a quantidade de caracteres 
+	em 100.
+
+------
+
+Link do Git: https://github.com/alura-cursos/listavipServlet
