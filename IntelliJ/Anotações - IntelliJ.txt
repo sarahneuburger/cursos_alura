@@ -1,0 +1,14 @@
+Anotações - IntelliJ
+
+* ALT 1 - Acesso a aba project
+* ALT SHIFT F10 - Inicia a configuração da classe main para rodar a aplicação
+* SHIFT F10 - Executar a classe main configurada no anterior
+* ALT Insert - Criar novo arquivo/pacote. Dentro de classes, tem contexto de generate
+* File -> Settings -> Keymap -> Atalhos da configuração atual
+* Help -> Keymap Records -> lista em pdf de todos os atalhos
+* F6 - Mover arquivo, ex para pacote
+* ALT Enter - Sugestões
+* ALT SHIFT Insert - Altera seleção entre coluna e linha
+* CTRL N - Buscar classes do projeto
+* CTRL D - Duplica as linhas
+* CTRL SHIFT A - Consegue acessar tudo que tem no IntelliJ, plugins, configs, atalhos, etc
