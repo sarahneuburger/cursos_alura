@@ -12,3 +12,14 @@ Anotações - IntelliJ
 * CTRL N - Buscar classes do projeto
 * CTRL D - Duplica as linhas
 * CTRL SHIFT A - Consegue acessar tudo que tem no IntelliJ, plugins, configs, atalhos, etc
+* CTRL B - Inspecionar a linha atual, vai para a outra classe
+* ALT mais setas - navega entre as classes
+* CTRL SHIFT F12 - expandir tela, oculta as demais abas
+* CTRL F4 - fechar aba atual
+* ALT SHIFT X - fechar todas as abas
+* SHIFT F6 - alterar nomes, ajustando as referências
+* CTRL ALT M - extração de código, cria método, ajusta a referência
+* CTRL SHIFT F - Find in Path, busca por textos no projeto
+* CTRL F12 - visualizar a estrutura da classe
+* ALT F7 - visualizar usos do método/classe
+* CTRL H - visualizar hierarquia da classe
