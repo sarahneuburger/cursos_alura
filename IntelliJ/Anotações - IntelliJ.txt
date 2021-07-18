@@ -23,3 +23,17 @@ Anotações - IntelliJ
 * CTRL F12 - visualizar a estrutura da classe
 * ALT F7 - visualizar usos do método/classe
 * CTRL H - visualizar hierarquia da classe
+* CTRL SHIFT ALT T - opções de refatoração
+* Delegate - delegar comportamento de uma classe
+* Delegate Methods - em uma classe service ALT Insert delega os métodos públicos que o objeto
+	chamado no service possui e vai encapsular, mantendo a assinatura e funcionalidade.
+* CTRL SHIFT F6 - type migration, altera o tipo do dado em todas as referências
+* Superclass - opção de refatoração - migra método genéricos para outra classe para serem
+	reutilizados, depois basta estendê-la 
+* Extrair interface - opções de refatoração - cria uma interface conforme parâmetros selecionados
+* Encapsulate fields - opções de refatoração - encapsulamento, get, set, construtor,
+	tudo nesta mesma ação
+* Pull Members Up - Clicar com botão - selecionar a opção - manda dados de uma classe para outra
+	ex atributos, métodos para a superclass (push members down, comportamento para subclasses)
+
+
