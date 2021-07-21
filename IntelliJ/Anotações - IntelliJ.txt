@@ -36,4 +36,28 @@ Anotações - IntelliJ
 * Pull Members Up - Clicar com botão - selecionar a opção - manda dados de uma classe para outra
 	ex atributos, métodos para a superclass (push members down, comportamento para subclasses)
 
+* CTRL W - seleciona o nome do método, clicando novamente, seleciona todo o método
 
+
+-- Criar variáveis
+    * Variável local Ctrl + Alt + V / CMD + Alt + V
+    * Atributo Ctrl + Alt + F / CMD + Alt + F
+    * Constante Ctrl + Alt + C / CMD + Alt + C
+
+-- Templates
+	Também podemos criar as variáveis por meio de templates para isso, após escrever a instância
+	utilize o operador ponto(.) e então escreva os seguintes templates, então digite Enter:
+
+    * Variável local var
+    * Atributo field
+    * Constante const (Embora exista, esse template funciona em situações específicas, portanto, quando
+	for constante, tente o atalho diretamente)
+
+-- Para criar o if podemos utilizar o Surround With por meio do atalho Ctrl + Alt + T / CMD + Alt + T 
+	que é uma feature que apresenta todas as estruturas que englobam código, como é o caso do if, 
+	for entre outras. 
+
+-- Além de só usá-los, também temos a capacidade de conhecer a implementação dos Live Templates, a 
+	forma mais objetiva é por meio do find action (Ctrl + Shift + A / CMD + Shift + A), então 
+	escrevemos Live Templates, escolha a opção do Settings.
+-- Para adicionar uma variável dentro de um template usamos a seguinte syntax $NOME_DA_VARIAVEL$
