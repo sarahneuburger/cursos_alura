@@ -10,7 +10,7 @@ public class TestesLoja {
 	
 	public static void main(String[] args) {
 		
-		Orcamento orcamento = new Orcamento(BigDecimal.valueOf(100));
+		Orcamento orcamento = new Orcamento(new BigDecimal("100"), 6);
 		CalculadoraDeImpostos calculadoraDeImpostos = new CalculadoraDeImpostos();
 		BigDecimal retorno = calculadoraDeImpostos.calcular(orcamento, new ICMS());
 		System.out.println(retorno);
