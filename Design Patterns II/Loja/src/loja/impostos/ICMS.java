@@ -4,9 +4,13 @@ import java.math.BigDecimal;
 
 import loja.orcamento.Orcamento;
 
-public class ICMS implements TipoDeImposto {
+public class ICMS extends TipoDeImposto {
 	
-	public BigDecimal calcular(Orcamento orcamento) {
+	public ICMS(TipoDeImposto outro) {
+		super(outro);
+	}
+
+	public BigDecimal realizarCalculo(Orcamento orcamento) {
 		return orcamento.getValor().multiply(new BigDecimal("0.6"));
 	}
 
