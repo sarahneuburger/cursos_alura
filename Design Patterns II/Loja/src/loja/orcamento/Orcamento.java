@@ -15,6 +15,11 @@ public class Orcamento implements Orcavel {
 	private List<ItemOrcamento> itens = new ArrayList<>();
 
 	public BigDecimal getValor() {
+		try {
+			Thread.sleep(2000); // Simula lentidão do sistema
+		} catch (Exception e) {
+			throw new RuntimeException(e)
+;		}
 		return valor;
 	}
 	
