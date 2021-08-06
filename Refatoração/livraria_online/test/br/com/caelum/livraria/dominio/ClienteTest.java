@@ -1,5 +1,6 @@
 package br.com.caelum.livraria.dominio;
 
+import static br.com.caelum.livraria.dominio.ObjetosParaTestes.CEP;
 import static br.com.caelum.livraria.dominio.ObjetosParaTestes.ID_CLIENTE;
 import static br.com.caelum.livraria.dominio.ObjetosParaTestes.UM_CLIENTE;
 import static br.com.caelum.livraria.dominio.ObjetosParaTestes.UM_TELEFONE;
@@ -13,7 +14,7 @@ public class ClienteTest {
 
 	@Test
 	public void igualdade() {
-		Cliente outroCliente = new Cliente(ID_CLIENTE, UM_TELEFONE);
+		Cliente outroCliente = new Cliente(ID_CLIENTE, UM_TELEFONE, CEP);
 		
 		assertThat(UM_CLIENTE, is(equalTo(outroCliente)));
 		assertThat(UM_CLIENTE.hashCode(), is(equalTo(outroCliente.hashCode())));
