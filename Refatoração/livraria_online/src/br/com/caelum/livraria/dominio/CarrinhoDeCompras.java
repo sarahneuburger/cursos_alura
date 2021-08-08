@@ -8,7 +8,18 @@ import java.time.LocalDate;
 import java.util.Iterator;
 
 import org.javamoney.moneta.Money;
-
+/**
+ * Introduzir método externo
+ * 
+ *  Encapsular essa lógica do método calcularDiasEntrega, no método, dessa forma, sinaliza 
+ *  que esse método deveria estar, ou pelo menos essa lógica, deveria estar nas classes de data, 
+ *  tornando assim, o método externo. Se encapsular essa lógica, dentro de um método, pode entender, 
+ *  olhando para o método, que esse método a gente olha, esse método não deveria estar aqui, é possível 
+ *  mandar um Patch de atualização, um Patch de melhoria.
+ *  
+ *  Método é ehFinalSemana.
+ *
+ */
 public class CarrinhoDeCompras implements Iterable<Livro> {
 	
 	private final Cliente cliente;
@@ -39,8 +50,12 @@ public class CarrinhoDeCompras implements Iterable<Livro> {
 	
 	private LocalDate calcularDiaDeEntrega(int diasParaEntrega) {
 		LocalDate dataCalculada = dataDaCompra.plusDays(diasParaEntrega);
-		if(asList(SATURDAY, SUNDAY).contains(dataCalculada.getDayOfWeek())) return calcularDiaDeEntrega(diasParaEntrega + 1);
+		if(this.ehFinalSemana(dataCalculada)) return calcularDiaDeEntrega(diasParaEntrega + 1);
 		return dataCalculada;
+	}
+	
+	public boolean ehFinalSemana(LocalDate data) {
+		return asList(SATURDAY, SUNDAY).contains(data.getDayOfWeek());
 	}
 
 	public void incluirDesconto(Desconto desconto) {
@@ -71,7 +86,7 @@ public class CarrinhoDeCompras implements Iterable<Livro> {
 		return livros.iterator();
 	}
 
-	public Livros getLivros() {
-		return livros;
+	public void adicionar(Livro livro) {
+		livros.adicionar(livro);
 	}
 }

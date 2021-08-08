@@ -1,5 +1,13 @@
 package br.com.caelum.livraria.dominio;
-
+/**
+ * Ocultar deleção
+ * 
+ * Exposição indevido de atributos para outros objetos.
+ * É criado o acesso seguro a esses dados.
+ * 
+ * Aplicado no método adicionar no CarrinhoDeCompras, ainda era acesso diretamente 
+ * em um atributo da classe.
+ */
 import static java.time.LocalDate.now;
 
 import java.util.HashSet;
@@ -20,7 +28,7 @@ public class CarrinhoDeComprasFactory {
 		if (carrinhos.contains(carrinho)) {
 			carrinho = carrinhos.stream().filter(umCarrinho -> umCarrinho.doCliente(cliente)).findFirst().orElse(null);
 			if (carrinho != null)
-				carrinho.getLivros().adicionar(livro);
+				carrinho.adicionar(livro);
 		} else
 			carrinhos.add(carrinho);
 		return carrinho;

@@ -1,0 +1,25 @@
+*** Mover método: 
+	inicialmente devemos determinar quais são as classes de origem e destino do código que será movido. 
+	Em seguida examinamos a origem, em busca de recursos que possam ser movidos para o destino, e os 
+	copiamos para a classe destino. Realizamos possíveis ajustes que se façam necessários e substituímos 
+	a chamada ao código antigo pelo método novo da classe de destino. Por último, rodamos os testes;
+
+*** Mover campo: 
+	começamos criando o campo que será movido na classe de destino. Em seguida, criamos métodos de 
+	leitura e escrita (setters e getters) desse novo campo na classe (observe que no vídeo, ao invés de 
+	ser criado um setter, o construtor da classe Cliente, que recebeu o novo campo, foi alterado). Realizamos 
+	ajustes que se façam necessários e passamos a utilizar o código novo. Corrigimos o que for necessário e 
+	rodamos os testes;
+
+*** Extrair classe: 
+	inicialmente criamos uma nova classe, que comportará os métodos e atributos a serem movidos. Em seguida, 
+	usamos mover método e mover campo, executando os testes após cada movimentação (e possíveis ajustes). 
+	Assim que todas as movimentações forem realizadas, passamos a usar a nova classe no código existente, e 
+	apagamos possíveis códigos que já foram copiados. Por último, rodamos nossos testes;
+
+*** Internalizar classe: 
+	para aplicar essa técnica, começamos utilizando a técnica de mover campo para a classe que irá absorver a 
+	classe a ser removida. Em seguida, aplicamos mover método nos métodos públicos na classe que irá desaparecer, 
+	transferindo-os para a classe que os absorverá. Agora precisamos verificar quais as classes dependem da que 
+	irá ser removida, e substituir (ou mesmo remover) essas referências. E, por último, mas não menos importante, 
+	rodamos os testes;

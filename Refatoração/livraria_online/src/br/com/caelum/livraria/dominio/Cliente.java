@@ -1,14 +1,25 @@
 package br.com.caelum.livraria.dominio;
 
+/**
+ * Internalizar classes
+ * 
+ * Trazer atributos e métodos da classe que será absorvida. Ajustar 
+ * referências de outras classes que utilizam Telefone.
+ * 
+ * 
+ */
 public class Cliente {
 
 	private final String id;
-	private final Telefone telefone;
 	private String cep;
+	
+	private String ddd;
+	private String numero;
 
-	public Cliente(String id, Telefone telefone, String cep) {
+	public Cliente(String id, String ddd, String numero, String cep) {
 		this.id = id;
-		this.telefone = telefone;
+		this.ddd = ddd;
+		this.numero = numero;
 		this.cep = cep;
 	}
 
@@ -22,13 +33,17 @@ public class Cliente {
 		return iguais;
 	}
 	
+	public String getTelefoneFormatado() {
+		return String.format("(%s) %s", ddd, numero); 
+	}
+	
 	@Override
 	public int hashCode() {
 		return id.hashCode();
 	}
 
 	public String getTelefone() {
-		return telefone.toString();
+		return this.getTelefoneFormatado();
 	}
 	
 	public String getCep() {
