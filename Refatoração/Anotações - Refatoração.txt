@@ -23,3 +23,72 @@
 	transferindo-os para a classe que os absorverá. Agora precisamos verificar quais as classes dependem da que 
 	irá ser removida, e substituir (ou mesmo remover) essas referências. E, por último, mas não menos importante, 
 	rodamos os testes;
+
+*** Ocultar delegação: 
+	para cada método que esteja expondo demais os atributos de uma classe, crie um método substituto, que encapsule 
+	esse atributo. Em seguida, escrevemos a lógica necessária para esse novo método funcionar (com, inclusive, o 
+	atributo antes exposto). Depois, verificamos quais os clientes do método antigo e fazemos com que esses clientes 
+	acessem o novo método. Removemos o código antigo e rodamos os testes;
+
+*** Introduzir método externo: 
+	começamos com a criação de um método que não deve ter relação alguma com a classe que o hospeda. Depois, 
+	apenas escrevemos e/ou copiamos o código que precisarmos para dentro desse novo método. Fazemos a substituição 
+	do código antigo pelo novo e rodamos nossos testes;
+
+*** Introduzir extensão local: 
+	criamos uma classe com um construtor que receba todos os parâmetros necessários para sua inicialização, a 
+	partir do atributo da classe que se deseja introduzir uma extensão. Criamos também os atributos a serem inicializados 
+	pelo construtor e movemos os métodos que manipulam esses atributos para a nova classe (com as devidas adaptações). 
+	Fazemos a substituição do código antigo para o novo na classe antiga e rodamos os testes;
+
+
+*** Com o auxílio de IDEs com o Eclipse, temos a possibilidade de aplicar as técnicas vistas em aula com pouco ou nenhum problema 
+	envolvendo erros na refatoração. Apenas selecione o código a ser refatorado, clique com o botão direito, aguarde um 
+	pop-up aparecer e: 
+	--- se for extrair um método, selecione 'Refactor' -> 'Extract Method';
+    	--- se for internalizar um método, selecione 'Refactor' -> 'Inline';
+
+*** Para introduzir variável explicativa: 
+	selecionar "Refactor" e "Extract Local Variable", fornecer um nome para a nova variável e confirmar. O Eclipse atribuirá 
+	a expressão selecionada à nova variável e substituirá o local onde a expressão é usada pela nova variável;
+
+*** Para internalizar variável temporária: 
+	selecionar "Refactor" e "Inline" e confirme a refatoração. O Eclipse removerá a variável e colocará a expressão atribuída 
+	anteriormente a ela em todos os locais onde a variável era usada;
+
+*** Para substituir variável temporária por consulta: 
+	verificar se a variável recebe mais de uma atribuição, por meio de inserção do modificador de acesso final à variável. 
+	Se ela sofrer apenas uma atribuição, ela poderá participar dessa refatoração. Em seguida, selecionar o lado direito da 
+	atribuição e aplicar a técnica "extract method". Por último, substituir todos os pontos onde a variável é usada pelo novo 
+	método, e remover a variável, visto que ela não é mais útil;
+
+*** Para dividir variável temporária: 
+	selecionar "Refactor" e "Rename", para podermos renomear a variável com o valor que queremos que ela tenha na sua primeira 
+	atribuição. Em seguida, a declaramos como final. Assim, o Eclipse nos informará onde mais ocorrem atribuições a ela, visto 
+	que uma variável final aceita apenas uma atribuição. Com isso, podemos ir criando novas variáveis, e substituindo a anterior 
+	por essas novas variáveis;
+
+*** Remover atribuições a parâmetros:
+        - identifique os parâmetros do método que sofrem alterações ao longo do método;
+        - para cada parâmetro nessas condições crie uma variável, e faça com que essa variável receba o valor do atributo;
+        - em seguida, substitua todas as referências ao parâmetro pela nova variável;
+        - repita essas operações para todos os parâmetros do método que estiverem nessas condições;
+        - rode os testes;
+
+*** Substituir método por objeto método:
+        - criar uma classe com o nome do método, com a classe que armazena o método como atributo;
+        - em seguida, para cada parâmetro do método, criar um correspondente atributo na nova classe;
+        - criar um construtor que inicialize todos os parâmetros do novo objeto;
+        - criar um método executar() na nova classe. Esse método receberá a lógica contida no método que se pretende refatorar;
+        - copie o código do método antigo para o método novo;
+        - realizar possíveis ajustes (na nova classe) que se façam necessários;
+        - inserir uma chamada à nova classe, em substituição ao código anterior;
+        - rode os testes;
+
+*** Substituir algoritmo: 
+	não há uma técnica padronizada para a execução dessa refatoração. Caso encontre-se um método que pareça confuso, 
+	altere-o de forma a remover a confusão. Apenas assegure-se de que não seja necessária a realização de nenhuma refatoração antes. 
+	É possível que algumas refatorações modifiquem o código de tal maneira que sua substituição não seja mais necessária.
+
+
+
