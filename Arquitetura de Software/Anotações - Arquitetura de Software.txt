@@ -1,0 +1,45 @@
+Anotações - Arquitetura de Software
+
+- A definição de arquitetura é subjetiva, direntes pontos de vista;
+- ANSI/IEEE - 1471-2000: Como organiza o sistema, em relação aos 
+	componentes, a relação entre eles e o ambiente. Como será
+	gerenciado design e a evolução;
+
+- BOEHM: como os componentes estão relacionados, relação com os stake-
+	holders. Relacionado ao negócio;
+
+- Componentes do software e suas relações;
+- Infraestrutura do software (hardware, sistema operacional, etc);
+- Estrutura e design de código;
+- Suporte aos requisitos de negócio;
+- Simplificar evoluções no software;
+
+- Requisitos não funcionais:
+	* Performance;
+	* Escalabilidade;
+	* Disponibilidade;
+	* Confiabilidade;
+	* Segurança;
+	* Manutenibilidade, fácil manutenção, ajustes (normalmente é negligenciado);
+	* Extensibilidade, criar novas funcionalidades (normalmente é negligenciado);
+	* Etc
+
+- Principais definições: https://resources.sei.cmu.edu/library/asset-view.cfm?assetid=513807
+
+- Tipos de arquiteturas:
+	* Modelo de arquitetura;
+	* Arquitetura em camadas - padrão MVC;
+	* Onion Architecture - regras de negócio centralizadas;
+	* Hexagonal Architecture - ports and adapters;
+	* Clean Architeture - domínio centralizado, separar o domínio da aplicação:	
+		** Vantagens do Clean Architecture: **
+		- Isolar o código de domínio da aplicação;
+		- Inversão de dependências;
+		- Favorece boas práticas de OO;
+		- Código de domínio com alta "testabilidade";
+		- Independência de frameworks e detalhes de infraestrutura;
+		
+	
+	
+
+
