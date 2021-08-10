@@ -1,5 +1,8 @@
 package escola;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * ID faz parte da infraestrutura (banco) e não ao domínio.
  * 
@@ -9,9 +12,53 @@ package escola;
 public class Aluno {
 	
 	// Serviço como identificado único
-	private String cpf;
+	private CPF cpf;
 	private String nome;
-	private String email;
+	private Email email;
+	
+	private List<Telefone> telefones = new ArrayList<>();
+
+	public Aluno(CPF cpf, String nome, Email email) {
+		this.cpf = cpf;
+		this.nome = nome;
+		this.email = email;
+	}
+
+	public void adicionarTelefone(String ddd, String numero) {
+		this.telefones.add(new Telefone(ddd, numero));
+	}
+
+	public CPF getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(CPF cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public Email getEmail() {
+		return email;
+	}
+
+	public void setEmail(Email email) {
+		this.email = email;
+	}
+
+	public List<Telefone> getTelefones() {
+		return telefones;
+	}
+
+	public void setTelefones(List<Telefone> telefones) {
+		this.telefones = telefones;
+	}
 	
 	
 	
