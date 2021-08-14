@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+import br.com.escola.aluno.matricular.MatricularAluno;
+import br.com.escola.aluno.matricular.MatricularAlunoDTO;
 import br.com.escola.dominio.aluno.Aluno;
 import br.com.escola.dominio.aluno.CPF;
 import br.com.escola.infra.aluno.RepositorioDeAlunosEmMemoria;
