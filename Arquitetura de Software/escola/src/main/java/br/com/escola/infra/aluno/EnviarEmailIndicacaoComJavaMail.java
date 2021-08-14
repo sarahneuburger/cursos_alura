@@ -7,7 +7,6 @@ public class EnviarEmailIndicacaoComJavaMail implements EnviarEmailIndicacao {
 
 	@Override
 	public void enviarPara(Aluno indicado) {
-		// Lógica de envio de emails com a lib java mail
 		
 	}
 
