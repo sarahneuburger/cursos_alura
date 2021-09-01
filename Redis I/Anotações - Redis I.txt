@@ -11,7 +11,53 @@ REDIS - Anotações
 	de uma forma muito rápida.
 - Os valores não precisam ser apenas números. Podem ser palavras, listas, conjuntos, 
 	entre outros. A medida que avançarmos no curso veremos alguns desses valores;
+- Instalação: Após a instalação, rodar o comando redis-server na pasta onde está o Redis;
+- Para conectar ao servidor, utilizar o comando redis-cli;
 - Exemplos de comandos:
 	* Setando valores em uma chave: SET "total_de_respostas" 1446015;
 	* Recuperando valores de uma chave: GET "total_de_respostas";
 	* Deletando uma chave: DEL "total_de_repostas";
+- Padrão das chaves para facilitar as buscas. Se utiliza : para criar a estrutura, exe 
+	resultado:17-05-2021:megasena "2, 5, 1, 15, 32, 17";
+- KEYS *, traz todas as chaves cadastradas;
+- Setando vários registros de uma vez: MSET (multiple set) chave valor chave valor 
+	chave valor. Não é preciso vírgula entre os registros, apenas o comando MSET;
+- Busca por nome da chave: KEYS "resultado*", volta chaves que contenham a palavra 
+	resultado;
+- Exemplo busca com dados no meio da chave:KEYS "resultado:*-05-2015:megasena". 
+	Retorna todos os registros de maio. * substitui um ou mais caracter;
+- Se for somente um caracter, utilizar ?, KEYS "resultado:1?-05-2015:megasena";
+- Filtro com "ou": KEYS "resultado:?[37]-??-????:megasena" (qualquer número na frente do
+	dia, seguido de 3 ou 7), de qualquer mês e ano;
+- Armazenar chaves com mais de uma parâmetro, um hash: HSET (hash set) resultado:24-05-2015
+	:megasena "numeros" "15, 22, 6, 4, 32, 33"
+	HSET (hash set) resultado:24-05-2015:megasena "ganhadores" 23;
+- Pegar valores de um hash HGET resultado:24-05-2015:megasena "ganhadores" ou 
+	resultado:24-05-2015:megasena "numeros";
+- Apagar dados do hash: HDEL remover um dos campos do hash;Da mesma forma que 
+	podemos atribuir vários conjuntos de chave e valor em um único comando 
+	utilizando o MSET, podemos utilizar o comando HMSET para atribuir varios 
+	valores quando utilizamos um hash no valor;
+- Se quisermos recuperar todos os valores que existem no hash, podemos utilizar o comando 
+	HGETALL, passando como parâmetro o nome da chave que está associada ao hash.
+
+´´´
+HSET resultado:24-05-2015:megasena "numeros" "13, 17, 19, 25, 28, 32"
+
+HSET resultado:24-05-2015:megasena "ganhadores" 23
+
+HGET resultado:24-05-2015:megasena "numeros"
+> "13, 17, 19, 25, 28, 32"
+
+HGET resultado:24-05-2015:megasena "ganhadores"
+> "23"
+
+HDEL resultado:24-05-2015:megasena "numeros"
+> (integer) 1
+
+HGET resultado:24-05-2015:megasena "numeros"
+> (nil)
+
+HGETALL "resultado:05-06-2015:megasena"
+´´´´
+
