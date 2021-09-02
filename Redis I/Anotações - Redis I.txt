@@ -40,6 +40,15 @@ REDIS - Anotações
 	valores quando utilizamos um hash no valor;
 - Se quisermos recuperar todos os valores que existem no hash, podemos utilizar o comando 
 	HGETALL, passando como parâmetro o nome da chave que está associada ao hash.
+- HMSET - seta diversos campos de um hash de uma vez só;
+- EXPIRE - expira uma chave conforme parâmetro em segundos. EXPIRE "sessao:tal" 1800
+	(minutos, meia hora);
+- TTL - time left, tempo até expirar; TTL "sessao:tal"
+- DECR - decrementa valores em uma chave;
+- INCR - incrementa valores de um em um;
+- Incremetar valores diferentes de 1. Para isso usamos o comando INCRBY;
+- Para incrementar valores quebrados usamos o comando INCRBYFLOAT. Para decrementar, 
+	também usamos o INCRBYFLOAT passando um valor negativo;
 
 ´´´
 HSET resultado:24-05-2015:megasena "numeros" "13, 17, 19, 25, 28, 32"
@@ -61,3 +70,13 @@ HGET resultado:24-05-2015:megasena "numeros"
 HGETALL "resultado:05-06-2015:megasena"
 ´´´´
 
+- Armazenar informações da sessão web de um usuário para os casos em que um site possui 
+	mais de um servidor: A primeira vantagem de utilizar esse tipo de estratégia, 
+	é que as informações não precisam ser compartilhadas entre os próprios 
+	servidores, mas sim no banco de dados, evitando a replicação da informação nos 
+	servidores web.
+
+	Uma outra vantagem, é que ao utilizar um banco de dados do tipo do Redis, o 
+	acesso a essas informações acaba se tornando bastante rápido.
+
+- Contando as visitas de uma página: 
