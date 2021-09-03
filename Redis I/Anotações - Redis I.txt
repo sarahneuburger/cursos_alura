@@ -49,6 +49,21 @@ REDIS - Anotações
 - Incremetar valores diferentes de 1. Para isso usamos o comando INCRBY;
 - Para incrementar valores quebrados usamos o comando INCRBYFLOAT. Para decrementar, 
 	também usamos o INCRBYFLOAT passando um valor negativo;
+- Sequência de bits, pode ser utilizada para guardar os usuários que acessaram o sistema, 
+	por exemplo:
+	* SETBIT chave:acesso 15 1
+	* SETBIT chave:acesso 23 1
+	* Neste exemplo, 0 e 1, servem como boolean para dizer se acessou ou não;
+	* O Redis já mapeia os demais Id como 0 (1...14, 16...22);
+	* GETBIT chave:acesso 11
+- Contar bits: BITCOUNT chave:acesso
+- Operador and com bit, para visualizar quem acesso mais de um dia (chaves diferentes):
+	BITOP AND nome:nova:sequencia chave:acesso chave:acesso:2;
+- GETBIT nome:nova:sequencia 1 (id buscada)
+- Operador or com bit, para visualizar quem acesso pelo menos um dia (chaves diferentes):
+	* BITOP AND nome:nova:sequencia2 chave:acesso chave:acesso:2;
+	* primeira chave é onde o resultado da operação será armazenado, depois é a
+	sequência de chaves que será analisada.
 
 ´´´
 HSET resultado:24-05-2015:megasena "numeros" "13, 17, 19, 25, 28, 32"
