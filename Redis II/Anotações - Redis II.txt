@@ -1,0 +1,18 @@
+Anotações - Redis II
+
+* Armazenar dados em lista *
+- LPUSH - left push - colocar na esquerda da lista de itens: 
+	LPUSH ultimas_noticias "Nome tal, tal...";
+- Com o LPUSH é possível vários registros de uma vez, basta: LPUSH ultimas_noticias 
+	"Notícia 1..." "Notícia 2..." "Notícia 3...";
+- RPUSH - right push - colocar na direita da lista;
+- LTRIM - "aparar as pontas", remove os elementos não necessário, delimita o tamanho
+	do array: LTRIM ultimas_noticias 0,2;
+- LINDEX - traz a referência para determinada posição na lista: 
+	LINDEX utlimas_noticias 0;
+- LLEN - list length - tamanho da lista: LLEN ultimas_noticias;
+- LRANGE - list range - trecho específico da lista: LRANGE ultimas_noticias 0 3 
+	(da posição 0 até a 3);
+
+* Elementos em uma fila *
+- Colocar item em uma fila de espera, depois vem outro programa e puxa para execução;
