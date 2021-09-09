@@ -16,3 +16,28 @@ Anotações - Redis II
 
 * Elementos em uma fila *
 - Colocar item em uma fila de espera, depois vem outro programa e puxa para execução;
+- RPUSH - inserir registros na fila, cria uma lista: RPUSH "fila:confirmar-email" 
+	"email@email.com";
+- LPOP - remove um item de uma fila/lista. Remove o dado mais antigo (da esquerda).
+	Remover e recuperar o primeiro elemento da fila: LPOP fila:confirma-emali;
+- RPOP - remover e recuperar o último de uma lista: RPOP "fila:confirma-email";
+- Uma utilização comum das filas, é quando desejamos executar tarefas em background, 
+	para que o usuário não tenha que esperar a tarefa ser concluída e possa 
+	realizar outras atividades de forma paralela. No caso de um sistema onde é 
+	necessário confirmação por e-mail ou SMS, podemos executar esse envio em 
+	segundo plano e a medida que usuários vão necessitando de confirmação vamos 
+	armazenando-os em uma fila, onde o primeiro que chega é o primeiro que terá 
+	sua solicitação atendida.
+- Um outro exemplo de uso de fila, é um chat de atendimento, onde a medida que os 
+	usuários precisam esperar os atendentes estarem disponíveis, eles são 
+	colocados em uma fila.
+- Busy waiting: o sistema fica esperando de forma ocupada, quando utilizado 
+	constantemente o POP;
+- Orientar para esperar chegar dados na fila;
+- BLPOP - block left pop - bloquear para aguardar o registro: BLPOP fila:confirma-email 
+	30 (em segundos que irá aguardar);
+- Se um registro chegar durante esse tempo frisado acima, será atendido na fila. Caso
+	o tempo estoure, retorna null;
+- BLPOP com segundos em 0, fica aguardando por tempo indeterminado;
+- Redis armazena em memória, não em disco;
+ 
