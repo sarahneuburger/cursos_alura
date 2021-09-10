@@ -41,3 +41,21 @@ Anotações - Redis II
 - BLPOP com segundos em 0, fica aguardando por tempo indeterminado;
 - Redis armazena em memória, não em disco;
  
+*** Conjuntos ***
+- SADD - set add - adicionar a um conjunto: SADD "relacionamentos" "nome";
+- Podem incluir vários elementos de cada vez;
+- Conjunto não itens repetidos;
+- SCARD - set cardinal - quantos elementos tem no conjunto (em quantidade): 
+	SCARD "relacionamentos";
+- SMEMBERS - set members - quais são os elementos: SMEMBERS "relacionamentos";
+- No conjunto, não necessariamente, os conjuntos ficam na ordem;
+- SISMEMBER - is member - saber se há um elemento específico no conjunto: 
+	SISMEMBER "relacionamentos" "nome";
+- SREM - set remove - remover um elemento do conjunto: SREM "relacionamentos" "nome";
+- SINTER - set intersection - verificar a intersecção entre dois conjuntos:
+	SINTER "relacionamentos:um" "relacionamentos:dois";
+- SDIFF - set differences - diferenças entre os conjuntos: SDIFF "relacionamentos:um" 
+	"relacionamentos:dois";
+- SUNION - set union - união entre conjuntos, retorna todos os elementos sem repetição:
+	SUNION "relacionamentos:um" "relacionamentos:dois";
+
