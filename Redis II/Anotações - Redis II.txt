@@ -58,4 +58,33 @@ Anotações - Redis II
 	"relacionamentos:dois";
 - SUNION - set union - união entre conjuntos, retorna todos os elementos sem repetição:
 	SUNION "relacionamentos:um" "relacionamentos:dois";
+- TYPE - comando para saber o tipo da chave;
 
+** Ranks **
+- HGETALL - trazer todos ps dados de uma tabela/hash: HGETALL "nome:chave";
+- HINCRBY - acrescentar valores na chave, soma ao valor anterior, não sobrepoe:
+	HINCRBY "jogador:1" "pontos" 1 (incremento);
+- HINCRBYFLOAT - acrescentar valores float;
+
+** Conjunto ordenado de elementos - sorted set **
+- ZADD - adicionar no conjunto ordenado: ZADD chave:pontuacoes 50076 nome (primeiro o 
+	elemento que será ordenado);
+- ZCARD - número de elementos da lista ordenada: ZCARD chave:pontuacoes;
+- A referência (ex nome) não pode ser duplicada. Normalmente, o id é utilizado;
+- ZRANGE - traz os itens solicitados de acordo com a ordem crescente: 
+	ZRANGE pontuacaoes 0 3;
+- ZREVRANGE - range reverso , traz os dados de forma descrescente;
+- ZREVRANGE WITHSCORES - traz os dados com o valor e referência: ZRANGE pontuacoes 0 3 
+	WHITACORES. Saída: "nome" "22123";
+- ZREVRANGE com todos os elementos:ZREVRANGE pontuacoes 0 -1 WITHSCORES. O dado -1 
+	representa o último elemento. -2 penúltimo, etc;
+- ZSCORE - pontuação de determinado elemento no ranking: ZSCORE potuacoes nome. Devolve o
+	número de pontos;
+- ZRANK - posição de determinado elemento: ZRANK potuacoes nome (considera a partir da
+	posição 0);
+- ZREVRANK - do maior pro menor, posição do elemento;
+- ZINCRBY - incrementar valores no elemento: ZINCRBY pontuacoes 50000 (o quanto adicionar)
+	 nome (para quem);
+- DEL pontuacoes - deleta a chave;
+- Caso a referência (quem) seja a id, normalmente será necessário buscar mais informações
+	posteriormente, para vincular a id a um usuário;
