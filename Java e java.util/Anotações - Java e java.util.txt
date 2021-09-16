@@ -11,4 +11,10 @@ Anotações - Java e java.util
     - Ao acessar uma posição inválida recebemos a exceção ArrayIndexOutOfBound-
 	Exception;
     - Arrays possuem um atributo length para saber o tamanho;
-    - A forma literal de criar uma Array, com o uso de chaves {}.
+    - A forma literal de criar uma Array, com o uso de chaves {};
+    - Uma array do tipo Object pode guardar qualquer tipo de referência
+    	quando convertemos uma referência genérica para uma referência mais específica é 
+	preciso usar um type cast;
+    - O cast só compila quando é possível, mesmo assim pode falhar na hora de rodar quando 
+	o type cast falha podemos receber uma ClassCastException para receber valores 
+	ao chamar o programa Java na linha de comando podemos usar o array String[] no método main.
