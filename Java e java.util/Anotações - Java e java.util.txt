@@ -20,9 +20,38 @@ Anotações - Java e java.util
 	ao chamar o programa Java na linha de comando podemos usar o array String[] no método main.
 
 ** ArrayList **
-
     - A classe java.util.ArrayList encapsula o uso do array e oferece vários métodos de mais 
 	alto nível;
     - Guarda referencias;
     - Os generics parametrizam classes;
     - No caso da ArrayList podemos definir o tipo dos elementos através de generics;
+    - Array com redimensionamento dinâmico;
+
+** LinkedList **
+	- Lista que armazena a referência posterior e anterior de cada elemento;
+	- Ao apagar elementos não perde a sequência das informações;
+	- Não utiliza ArrayList;
+	- É uma lista duplamente encadeada;
+	- Sabemos que estamos no final da lista quando atingimos um elemento que não possui um próximo;
+	- Negativo, para acessarmos o último elemento, temos que percorrer desde o primeiro para verificar
+		se não possui um elemento posterior;
+	- Compartilha os mesmo métodos do ArrayList (add, remove, size...);
+
+** List **
+	- É a interface das listas, utilizadas em ArrayList e LinkedList, pode ser usada diretamente;
+
+** Vector **
+	- Internamente usa um Array;
+	- Surgiu antes que o ArrayList;
+	- Diferente do ArrayList tem thread safe;
+	- Pode ser manipulados em várias pilhas simultâneamente;
+	- Usar apenas como exceção;
+------
+
+- A interface java.util.Collection que é a interface de todas as coleções;
+- As listas são sequencias que aceitam elementos duplicados;
+- Os conjuntos (java.util.Set) também são coleções, mas não aceitam duplicados nem são listas;
+
+** Autoboxing e unboxing **
+ 	- Transformação automática de primitivos para objeto, exemplo, adicionar um dado int em 
+		uma list, aceita e compila, pois por baixo dos panos, o Java converte pra Integer;

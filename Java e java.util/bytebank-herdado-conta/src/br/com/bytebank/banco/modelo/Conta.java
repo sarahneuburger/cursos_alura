@@ -92,6 +92,18 @@ public abstract class Conta extends Object {
         return Conta.total;
     }
     
+    // Sobrescrita do método equals
+    @Override
+    public boolean equals(Object obj) {
+    	Conta outra = (Conta) obj;
+    	
+    	if(this.agencia != outra.agencia || this.numero != outra.agencia) {
+    		return false;
+    	}
+    	
+    	return true;
+    }
+    
     @Override
 	public String toString() {
 		return "Numero: " + this.numero + ", Agencia: " + this.agencia;
