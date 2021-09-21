@@ -55,3 +55,19 @@ Anotações - Java e java.util
 ** Autoboxing e unboxing **
  	- Transformação automática de primitivos para objeto, exemplo, adicionar um dado int em 
 		uma list, aceita e compila, pois por baixo dos panos, o Java converte pra Integer;
+	- Auto - de primitivo para objeto;
+	- Un - de objeto para primitivo;
+	- Transformar de primitivo para objeto, também se chama wrapper, que é "embrulhar";
+
+** Numbers **
+	- As classes de objetos para os primitivos, extendem a classe Number, que extende a Object;
+------
+
+    - Para cada primitivo existe uma classe chamada Wrapper;
+    - Para guardar um primitivo numa coleção é preciso criar um objeto que embrulha o valor;
+    - A criação do objeto Wrapper é chamada de autoboxing;
+    - A retirada do valor primitivo do objeto Wrapper é chamada de unboxing;
+    - Autoboxing e unboxing acontecem automaticamente;
+    - As classes wrapper possuem vários métodos auxiliares, por exemplo para o parsing;
+    - Todas as classes wrappers que representam um valor numérico possuem a classe java.lang.Number0
+	como mãe;
