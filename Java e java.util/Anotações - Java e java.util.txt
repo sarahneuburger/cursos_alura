@@ -84,3 +84,30 @@ Anotações - Java e java.util
     - A classe Collections é uma fachada com vários métodos auxiliares para trabalhar com as coleções, 
 	principalmente listas;
 
+------
+
+   - Uma Iterator é um objeto que possui no mínimo dois métodos: hasNext()e next(). Ou seja, você pode 
+	usá-lo para perguntar se existe um próximo elemento e pedir o próximo elemento. A notícia boa é 
+	que isso funciona com TODAS as implementações e aí a grande vantagem.
+
+List<String> nomes = new ArrayList<>();
+nomes.add("Super Mario");
+nomes.add("Yoshi"); 
+nomes.add("Donkey Kong"); 
+
+Iterator<String> it = nomes.iterator();
+
+while(it.hasNext()) {
+  System.out.println(it.next());
+}
+
+Set<String> nomes = new HashSet<>();
+nomes.add("Super Mario");
+nomes.add("Yoshi"); 
+nomes.add("Donkey Kong"); 
+
+Iterator<String> it = nomes.iterator();
+
+while(it.hasNext()) {
+  System.out.println(it.next());
+}

@@ -1,7 +1,6 @@
 package br.com.bytebank.banco.test.util;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -51,8 +50,9 @@ public class Teste {
 		}
 
 		// Function Objects, objetos que armazenam apenas métodos (comparator)
-		
-		// Classe anônima, por baixos dos panos, o Java cria uma claase com essa interface e implementação
+
+		// Classe anônima, por baixos dos panos, o Java cria uma claase com essa
+		// interface e implementação
 		lista.sort(new Comparator<Conta>() {
 			@Override
 			public int compare(Conta c1, Conta c2) {
@@ -61,7 +61,7 @@ public class Teste {
 
 		});
 
-		//Classe anônima
+		// Classe anônima
 		Comparator<Conta> comp = new Comparator<Conta>() {
 			@Override
 			public int compare(Conta c1, Conta c2) {
@@ -70,17 +70,19 @@ public class Teste {
 				return nomeC1.compareTo(nomeC2);
 			}
 		};
+
+		// Lambda, retorno implícito.. Por ser lista de Conta, o tipo não precisa ser
+		// explícito
+		lista.sort((c1, c2) -> Integer.compare(c1.getNumero(), c2.getNumero()));
+
+		// Pode fazer em uma linha quando possível, como acima, logo, não será necessário o return e {}
+		Comparator<Conta> compLambda = (Conta c1, Conta c2) -> {
+			String nomeC1 = c1.getTitular().getNome();
+			String nomeC2 = c2.getTitular().getNome();
+			return nomeC1.compareTo(nomeC2);
+		};
+
+		lista.forEach(conta -> System.out.println(conta + ", " + conta.getTitular().getNome()));
+
 	}
-
-}
-
-class TitularDaContaComparator2 implements Comparator<Conta> {
-
-	@Override
-	public int compare(Conta c1, Conta c2) {
-		String nomeC1 = c1.getTitular().getNome();
-		String nomeC2 = c2.getTitular().getNome();
-		return nomeC1.compareTo(nomeC2);
-	}
-
 }

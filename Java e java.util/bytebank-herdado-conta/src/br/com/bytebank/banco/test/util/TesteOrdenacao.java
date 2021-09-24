@@ -64,6 +64,9 @@ public class TesteOrdenacao {
 		// Ordem natural, definida na classe do objeto implementando Comparable da java.lang. Sobrescreve o método compareTo.
 		Collections.sort(lista);
 		
+		//Exemplo com lambda
+		Collections.sort(lista, (s1, s2) -> s1.getAgencia() - s2.getAgencia());
+		
 		//Collections.reverse(lista);
 		
 		System.out.println("---------");
