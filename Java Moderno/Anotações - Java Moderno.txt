@@ -1,0 +1,18 @@
+Anotações - Java Moderno
+
+- Interface funcional:
+	- 1 único método abstrato. Além desse método ela pode ter outros métodos, 
+	contanto que sejam default ou 'static';
+
+- Para trabalhar com lambda, é necessário que uma interface funcional esteja envolvida;
+
+*Method reference*
+
+- É muito comum escrevermos lambdas curtos, que simplesmente invocam um único método. 
+	É o exemplo de s -> s.length(). Dada uma String, invoque e retorne o método length. 
+	Por esse motivo, há uma forma de escrever esse tipo de lambda de uma forma ainda 
+	mais reduzida. Em vez de fazer:
+		palavras.sort(Comparator.comparing(s -> s.length()));
+
+- Fazemos uma referência ao método (method reference):
+	palavras.sort(Comparator.comparing(String::length));
