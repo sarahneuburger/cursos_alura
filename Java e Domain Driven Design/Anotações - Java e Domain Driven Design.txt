@@ -1,0 +1,29 @@
+Anotações - Domain Driven Design
+
+- Eric Evans, 2004;
+
+- Desenvolver software orientado ao domínio;
+
+- Domínio da aplicação tem que estar explícito;
+
+- Como é hoje:
+	- Padrão MVC;
+	- Requisições assíncronas;
+	- Data access object;
+	- Spring boot;
+	- Ajax com JQuery;
+	- Identidade visual;
+
+- Principais conceitos:
+	- Foco no domínio;
+	- Linguagem ubíqua (liguagem comum para os envolvidos);
+	- Contexto delimitado;
+	- Blocos de construção (padrões utilizados no código para traduzir o domínio);
+	- Sugestão das camadas: User interface, application, domain, infrastructure;
+
+- Linguagem ubíqua:
+	- Linguagem universal;
+	- Ponte entre desenvolvimento e negócios;
+	- Nomenclatura das classes e variáveis, utilizar termos conhecidos pelo negócio;
+	- Termos diferentes, gera conflito de comunicação;
+	- Facilitar a manutebilidade e encontrar informações no fonte;
