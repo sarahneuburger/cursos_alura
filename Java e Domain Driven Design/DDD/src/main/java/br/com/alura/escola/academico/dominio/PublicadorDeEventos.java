@@ -3,6 +3,9 @@ package br.com.alura.escola.academico.dominio;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.alura.escola.academico.dominio.evento.Evento;
+import br.com.alura.escola.academico.dominio.evento.Ouvinte;
+
 public class PublicadorDeEventos {
 
 	
