@@ -1,0 +1,22 @@
+Anotações - Fundamentos de Microsserviços
+
+- Cada microsserviço deve ser o dono e gerenciar seus próprios dados;
+- Não necessariamente divide o mesmo servidor com o DB;
+- Componentes do microsserviço: API, banco de dados, processador de mensagens;
+- Uma máquina (servidor) pode ser considerada um componente. Várias aplicações 
+	em uma mesma máquina podem ser vários componentes. Um serviço de apoio 
+	(como banco de dados ou fila de mensageria) pode ser um componente. 
+	Qualquer coisa que efetivamente componha o serviço, é um componente.
+- Microsserviços são independentes;
+- Expõe alguma forma de comunicação (API), que é o contrato com seus clientes;
+- Manter evolução:
+	- Apenas modificações aditivas, novos endpoints e campos (opcionais);
+	- Versionamento de APIs, ao lançar a V2, a V1 deve continuar funcionando;
+	- Manter equipes separadas para cada serviço, a mesma equipe não vai alterar
+	os clientes e dependências de funcionalidades devem ser solicitadas
+	formalmente.
+- Limites entre serviços:
+	- Monolith first
+	- Cada módulo pode ser separado em um microsserviço;
+	-  DDD, bounded contexts podem virar microsserviços;
+	
