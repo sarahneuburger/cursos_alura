@@ -1,22 +1,101 @@
 Anotações - Fundamentos de Microsserviços
 
 - Cada microsserviço deve ser o dono e gerenciar seus próprios dados;
+
 - Não necessariamente divide o mesmo servidor com o DB;
+
 - Componentes do microsserviço: API, banco de dados, processador de mensagens;
+
 - Uma máquina (servidor) pode ser considerada um componente. Várias aplicações 
 	em uma mesma máquina podem ser vários componentes. Um serviço de apoio 
 	(como banco de dados ou fila de mensageria) pode ser um componente. 
 	Qualquer coisa que efetivamente componha o serviço, é um componente.
+
 - Microsserviços são independentes;
+
 - Expõe alguma forma de comunicação (API), que é o contrato com seus clientes;
+
 - Manter evolução:
 	- Apenas modificações aditivas, novos endpoints e campos (opcionais);
 	- Versionamento de APIs, ao lançar a V2, a V1 deve continuar funcionando;
 	- Manter equipes separadas para cada serviço, a mesma equipe não vai alterar
 	os clientes e dependências de funcionalidades devem ser solicitadas
 	formalmente.
+
 - Limites entre serviços:
 	- Monolith first
 	- Cada módulo pode ser separado em um microsserviço;
-	-  DDD, bounded contexts podem virar microsserviços;
+	- DDD, bounded contexts podem virar microsserviços;
+
+- Cuidar do host, físico e virtual. Sistema operacionais;
+	- Máquinas virtuais, fácil de provisionar, mas é caro;
+	- Sistema em cloud, conforme evolui, custo benefício é maior;
+	- Cointainers, mais leve que MV e consegue subir vários serviços;
 	
+- Etapas para um novo serviço:
+	- Repositório de versionamento;
+	-CI e CD (integração e entrega contínua);
+	- Processo automatizado e testes;
+	- Padrão, para que seja adaptável a novos serviços;
+
+- Padronizando a criação:
+	- Criação de logs (formato e destino);
+	- Verificação de status (health check);
+	- Monitoramento de métricas;
+	- Busca por configuração e secrets;
+
+- Cointainers:
+	- Uma espécie de template e tendo uma imagem base para containers 
+	que conterão microsserviçis;
+	- Depois, basta codificar e rodas os códigos nos containers criados.
+
+- Possíveis problemas:
+	- Dependências descontroladas;
+	- Falhas em cascata;
+	- Performance prejudicada;
+
+- Através do API Gateway podemos monitorar acessos a nossa aplicação, podemos 
+	ter uma ideia geral de erros que estejam acontecendo, monitorar 
+	performance, etc.
+
+- Como se comunicar:
+	- HTTP;
+	- gRPC - chamada de função remota, síncrona, em outros servidores;
+	- Protocolos personalizados;
+
+- Problema da abordagem síncrona:
+	- Ao realizar uma chamada direta para outro serviço e esperar sua 
+	resposta, problemas neste outro serviço nos afetarão diretamente;
+	- É a mais comum;
+
+- Comunicação assíncrona:
+	- Não obter mensagem/reposta imediatamente;
+	- Comunicação indireta;
+	- CQRS (background tasks);
+	- Eventos (mensageria);
+
+- Microsserviços possuem operações intensas em rede. A probabilidade de falha 
+	é grande;
+
+- Falhas em comunicação síncrona: Circuit breaker / cache;
+
+- Flhas em comunicação assíncrona: 
+	- Simples retry;
+	- Retry com back-off;
+	- Fila de mensagens mortas;
+	- Mensagens devem poder ser lidas fora de ordem;
+	- Mensagens devem poder ser recebidas repetidamente (idempotência);
+
+- Service descovery:
+	- Microsserviços podem estar na mesma rede ou em redes separadas, e cada
+	serviço pode estar exposto por um IP;
+	- Lidar com diretamente com o IP pode trazer problemas;
+
+- DNS:
+	- Não públicos;
+	- Pode ser utilizados como service registry para saber como acessar cada
+	serviço;
+	- Registro de nomes de domínios;
+	- Acessar quais informações sobre quais processos ou máquinas estão de pé
+	e sem falha;
+	- Docker e Kubernetes;
