@@ -99,3 +99,58 @@ Anotações - Fundamentos de Microsserviços
 	- Acessar quais informações sobre quais processos ou máquinas estão de pé
 	e sem falha;
 	- Docker e Kubernetes;
+
+- Segurança geral
+	- Segurança no transporte: HTTPS;
+	- Segurança em repouso:
+		- Criptografia: criptografia de disco, banco de dados cifrados,
+		criptografia em back-ups;
+		- Anonimização;
+	- Segurança no destino: Md5 e Argon2;
+
+- Autenticação e autorização:
+	 - Autenticação: cada requisição deve informar quem é o cliente. A partir
+	dessa informação, nossa aplicação pode decidir se a operação será realizada
+	ou não;
+	- Técnicas de autenticação: Basic HTTP, tokens (JWT), OAuth, OpenID Connect;
+	- Autorização: após a autenticação, verifica quais permissões o usuário possui,
+	o que pode fazer nos serviços;
+	- Técnicas de autorização: ACL (Access control list, lista de permissões), RBCA 
+	(Role-based access control, papel para realizar as ações), on behalf of (quais 
+	serviços determinado usuário pode ver, em nome do usuário);
+	
+- Segurança na rede: com o API Gateway aumenta a segurança, pois conseguimos controlar
+	a partir de uma única entrada quem acessa e criar as ações de segurança;
+	- Técnicas: Bloqueio por IPs, limitação de acesso;
+
+- Defense in Defth: todas as técnicas são importantes, mesmo que redundantes;
+	- Camadas de segurança;
+	- Hackers utilizam ferramentas modernas, estudar sobre os possíveis riscos;
+	- Equipe de infosec e execute pentests;
+	- Automizar verificações de segurança. Fazer requisições com certificado inválidos,
+	usuários não autorizados e etc;
+	- Monitore e detecte ataques em tempo real;
+	- Tenha logs e os sistemas com frequência;
+
+- Deploy:
+	- Release pipeline: linha de processos executados para gerar a entrega de um projeto;
+	- Pipeline: build, verificações, testes, etc;
+	- O microsserviço pode ser implantado em vários ambientes:
+		- Desenvolvimento;
+		- Staging / QA: testes de performance, smoke tests;
+		- Homologação;
+		- Produção: por cliente, por região;
+	- Configurações parametrizadas:
+		- Configurações do ambiente em si: quantidade de recursos, localização;
+		- Configurações da aplicação: destino do log, dependências, dados de acesso;
+
+- Estratégias de deploy:
+	- Rolling upgrade, atualização sem deixar a aplicação inacessível;
+	- Blue-green, mantém duas versões, monitora a nova caso dê tudo certo, descarta a antiga,
+	caso contrário, volta com a antiga;
+	- Feature toggle, ativa ou desativa a feature para determinado cliente;
+
+	
+
+
+
