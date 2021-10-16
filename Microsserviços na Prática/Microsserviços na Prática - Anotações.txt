@@ -1,0 +1,40 @@
+Microsserviços na Prática  - Anotações
+
+* Multi repo: Um repositório central, mas cada microsserviço é um repositório separado.
+	Padronizar o básico dos repositórios para manutebilidade e organização.
+ - Vantagens: cada equipe precisa apenas do seu repositório para trabalhar
+ - Desvantagens: criação de projeto sem padronização, controle de dependências entre 
+	projetos;
+
+* Sub módulos: trabalhar em "subpastas" dentro de um repositório central. Facilita o 
+	monitoramento e os commits; 
+
+* Cada serviço precisa de suas próprias definições de infra, banco, etc;
+
+* Escalar os serviços: Orquestrador de containers: Docker Swarm ou Kubernetes são ótimas 
+	ferramentas para esse trabalho.
+
+* Build do projeto: execução dos testes unitários/integração, padronização de código, estilo
+	de código, sintaxe, rodar processos estáticos;
+
+* Só é possível automatizar coisas que possam ser feitas manualmente;
+
+* Ferramentas de pipeline:
+ - Jenkis: processo de pipeline. É possível ter servidor on premisses;
+ - Travis CI: ambiente externo;
+ - GitHub Actions: fluxo de trabalho para o deploy automatizado.
+
+* CRON, software agendador de tarefas do Linux: Através do cron nós podemos agendar tarefas 
+	para rodar diariamente, semanalmente e até de minuto em minuto.
+
+*Processo de fanout em exchanges do RabbitMQ:
+	https://www.rabbitmq.com/tutorials/tutorial-three-php.html
+
+* Abordagens Optimistic e Pessimistic: Se seu uptime é altíssimo e sua taxa de falhas é mínima,
+ 	a abordagem otimista traz uma sensação de mais fluidez no uso da aplicação. Se a taxa 
+	de falhas da aplicação é considerável, a abordagem pessimista frustra menos o usuário, 
+	visto que não há uma interação sendo desfeita. Cada caso é um caso, então vale avaliar.
+
+* Microfrontends: diversas tecnologias em aplicações diferentes na mesma tela. Utilizado normalmente
+	em cenários de alta complexidade para que as atualizações possam ocorrer sem afetar o
+	resto da aplicação.
