@@ -1,6 +1,7 @@
 package br.com.alura;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class TestaCurso {
@@ -23,6 +24,9 @@ public class TestaCurso {
 		
 		List<Aula> aulasImutaveis = javaColecoes.getAulas();
 		List<Aula> aulas2 = new ArrayList<>(aulasImutaveis);
+		Collections.sort(aulas2); 
+		// para conseguir ordenar uma lista imutável, tem que passá-la no construtor para atribuí-la
+		// a uma lista "cópia" onde é possível mexer
 		System.out.println(aulas2); // Agora tem os itens adicionados
 		
 		// Tempo total, método criado na classe Curso
