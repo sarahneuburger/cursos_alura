@@ -34,6 +34,14 @@ public class TestaCursoComAluno {
 		 * entre threads sem perigos.
 		 */
 		Set<Aluno> alunosSincronizados = Collections.synchronizedSet(javaColecoes.getAlunos());
+		
+		System.out.println(javaColecoes.estaMatriculado(a1));
+	
+		// Se dois objetos são equals, obrigatoriamente possuem o mesmo hashCode
+		Aluno comparativo = new Aluno("Sarah", 123);
+		System.out.println(a1.equals(comparativo));
+		System.out.println(a1.hashCode() == comparativo.hashCode());
+	
 	}
 
 }
