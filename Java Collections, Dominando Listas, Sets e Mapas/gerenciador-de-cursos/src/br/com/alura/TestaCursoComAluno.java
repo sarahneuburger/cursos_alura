@@ -1,6 +1,7 @@
 package br.com.alura;
 
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.Set;
 
 public class TestaCursoComAluno {
@@ -42,6 +43,26 @@ public class TestaCursoComAluno {
 		System.out.println(a1.equals(comparativo));
 		System.out.println(a1.hashCode() == comparativo.hashCode());
 	
+		
+		// Iterator, iteração disponível antes do foreach
+		Set<Aluno> alunos = javaColecoes.getAlunos();
+		Iterator<Aluno> iterador = alunos.iterator();
+		while(iterador.hasNext()) {
+			Aluno next = iterador.next();
+			System.out.println(next);
+			
+		}
+				
+		// LinkedHashSet nos dá a performance de um HashSet mas com acesso previsível e ordenado.
+		
+		// TreeSet: Para adicionarmos um objeto em um TreeSet ele precisa implementar a interface 
+		// Comparable. Mas o que fazer se estamos trabalhando com uma instância de uma classe que 
+		// não temos acesso ou não podemos modificar para implementar Comparable? Nesse caso, o 
+		// construtor do TreeSet recebe como parâmetro um objeto que implementa Comparator. Dessa
+		// forma, o critério de comparação pode ser criado em separado da classe na qual opera.
+		
+		// Collections classes que implementam ou são filhas da interface Collection.
+		// Conjunto de objetos.
 	}
 
 }
