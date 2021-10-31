@@ -1,0 +1,24 @@
+Anotações - Threads em Java 1
+
+- Ensinar a aplicação a fazer várias coisas ao mesmo tempo;
+- Java é utilizado automaticamente no Java;
+- JConsole, visualiza as execuções em andamente e consegue se conectar as VMs;
+- A JVM faz automaticamente o uso de threads para coletar objetos abandonados 
+	na memória. Essas threads (que na verdade são várias) chamamos de 
+	Garbage Collector (que traduzido do inglês, significa "coletor de 
+	lixo" ou "lixeiro"). Ele é responsável por jogar fora todos os 
+	objetos que não estão sendo referenciados por nenhum outro objeto;
+- Além disso, temos vários threads relacionados com RMI. Aquele RMI é uma 
+	tecnologia para conectar duas JVMs. Para não travar a aplicação 
+	principal, as conexões RMI também são tratadas em threads separadas.
+
+--------
+
+    * Através das Threads podemos executar tarefas em paralelo;
+    * Uma classe que implementa a interface Runnable define a tarefa que o Thread executará;
+    * O construtor da classe Thread recebe esse Runnable;
+    * Devemos inicializar uma Thread explicitamente através do método start();
+    * Através do Thread.sleep(millis) podemos mandar uma thread dormir;
+    * Java suporta Threads nativamente;
+    * Java mapeia os Threads para o Sistema Operacional;
+    * A ordem de execução depende da JVM e não do nosso código.
