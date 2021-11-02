@@ -12,7 +12,7 @@ Anotações - Threads em Java 1
 	tecnologia para conectar duas JVMs. Para não travar a aplicação 
 	principal, as conexões RMI também são tratadas em threads separadas.
 
---------
+---------
 
     * Através das Threads podemos executar tarefas em paralelo;
     * Uma classe que implementa a interface Runnable define a tarefa que o Thread executará;
@@ -22,3 +22,26 @@ Anotações - Threads em Java 1
     * Java suporta Threads nativamente;
     * Java mapeia os Threads para o Sistema Operacional;
     * A ordem de execução depende da JVM e não do nosso código.
+
+---------
+
+- Todo o bloco synchronized será executado de uma vez só, de maneira atômica. Até pode ser 
+	que o escalonador para a thread no meio, para alguma outra thread executar uma outra 
+	coisa, mas nenhuma outra thread pode entrar nesse bloco enquanto aquela com a chave 
+	não sai.
+
+- Para quem já trabalhou com banco de dados e usou transações sabe que exatamente isso é uma 
+	das caraterísticas delas. Transações possuem as caraterísticas ACID que vão além da 
+	funcionalidade syncronized:
+	    A de Atômico (é isso que syncronized faz)
+	    C de Consistente
+	    I de Isolado
+	    D de Durável 
+
+---------
+
+    * Um Thread pode ter um nome;
+    * Podemos pegar o Thread atual através do método Thread.currentThread();
+    * Para sincronizar threads, devemos utilizar um bloco synchronized;
+    * O synchronized significa que bloqueamos o objeto para outros threads;
+    * A sincronização é feita através de mutex, que nada mais é do que a chave do objeto.
