@@ -45,3 +45,32 @@ Anotações - Threads em Java 1
     * Para sincronizar threads, devemos utilizar um bloco synchronized;
     * O synchronized significa que bloqueamos o objeto para outros threads;
     * A sincronização é feita através de mutex, que nada mais é do que a chave do objeto.
+
+---------
+
+Estados da Thread
+
+    * NEW Uma thread foi criada mas ainda não foi iniciada.
+    * RUNNABLE A thread está rodando dentro da JVM.
+    * BLOCKED A thread foi bloqueada pois não conseguiu pegar a chave.
+    * WAITING A thread está esperando pois foi chamado this.wait().
+    * TIMED_WAITING A thread está esperando pois foi chamado this.wait(milis).
+    * TERMINATED A thread está finalizada.
+
+--------
+
+Thread A - wait - trava a execução para aguardar algo
+Thread B - notifyAll - avisão que pode prosseguir
+
+--------
+
+* O que acontece se o método wait() for chamado fora de um método ou bloco synchronized?
+	É jogado uma exceção em tempo de execução do tipo java.lang.IllegalMonitorStateException.
+	A documentação da exceção diz: Thrown to indicate that a thread has attempted to wait on 
+	an object's monitor or to notify other threads waiting on an object's monitor without 
+	owning the specified monitor (Lançado para indicar que uma thread tentou esperar no 
+	monitor de um objeto ou notificar outros threads em espera no monitor de um objeto sem
+	possuir o monitor especificado).
+
+	A palavra monitor podemos traduzir como chave do objeto. Ou seja, a exceção acontece quando 
+	chamamos wait() ou notify() e não temos a chave em mãos (fora do bloco synchronized)!

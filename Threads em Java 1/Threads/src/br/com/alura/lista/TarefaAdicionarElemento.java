@@ -1,19 +1,21 @@
 package br.com.alura.lista;
 
+import java.util.List;
+
 public class TarefaAdicionarElemento implements Runnable {
 
-	private Lista lista;
+	private List<String> lista;
 	private int numeroThread;
 	
-	public TarefaAdicionarElemento(Lista lista, int numeroThread) {
+	public TarefaAdicionarElemento(List<String> lista, int numeroThread) {
 		this.lista = lista;
 		this.numeroThread = numeroThread;
 	}
 
 	@Override
 	public void run() {
-		for (int i = 0; i < 10; i++) {
-			lista.adicionaElementos("Thread " + numeroThread + " - " + i);
+		for (int i = 0; i < 100; i++) {
+			lista.add("Thread " + numeroThread + " - " + i);
 			
 		}
 
