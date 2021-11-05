@@ -9,6 +9,9 @@ public class Principal {
 		Thread convidado1 = new Thread(new TarefaNumero1(banheiro), "Nome1");
 		Thread convidado2 = new Thread(new TarefaNumero1(banheiro), "Nome2");
 		Thread limpeza = new Thread(new TarefaLimpeza(banheiro), "Limpeza"); 
+		// Deamon - Uma thread daemon é uma prestadora de serviços para outras threads. 
+		// Ela só é usada enquanto as outras threads estão rodando.
+		limpeza.setDaemon(true);
 		Thread convidado3 = new Thread(new TarefaNumero1(banheiro), "Nome3");
 		Thread convidado4 = new Thread(new TarefaNumero1(banheiro), "Nome4");
 		

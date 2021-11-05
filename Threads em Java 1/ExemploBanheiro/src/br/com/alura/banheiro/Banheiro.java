@@ -17,7 +17,7 @@ public class Banheiro {
 		synchronized (this) {
 			System.out.println(nome + ", entra no banheiro.");
 
-			if (ehSujo) {
+			while (ehSujo) {
 				esperaLaFora(nome);
 			}
 
@@ -28,6 +28,8 @@ public class Banheiro {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+
+			this.ehSujo = true;
 
 			System.out.println(nome + ", lava as mãos.");
 			System.out.println(nome + ", sai do banheiro.");
@@ -43,6 +45,11 @@ public class Banheiro {
 		// Sincronizar a execução, apenas uma thread por vez
 		synchronized (this) {
 			System.out.println(nome + ", entra no banheiro.");
+
+			while (ehSujo) {
+				esperaLaFora(nome);
+			}
+
 			System.out.println(nome + ", executa tarefa demorada.");
 
 			try {
@@ -50,6 +57,8 @@ public class Banheiro {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+
+			this.ehSujo = true;
 
 			System.out.println(nome + ", lava as mãos");
 			System.out.println(nome + ", sai do banheiro");

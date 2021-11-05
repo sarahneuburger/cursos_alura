@@ -74,3 +74,19 @@ Thread B - notifyAll - avisão que pode prosseguir
 
 	A palavra monitor podemos traduzir como chave do objeto. Ou seja, a exceção acontece quando 
 	chamamos wait() ou notify() e não temos a chave em mãos (fora do bloco synchronized)!
+
+--------
+
+* Threads daemon são como prestadores de serviços para outras threads. Elas são usadas para dar apoio à 
+	tarefas e só são necessárias rodar quando as threads "normais" ainda estão sendo executadas. 
+	Uma thread daemon não impede a JVM de terminar desde que não existem mais threads principais 
+	em execução. Um exemplo de uma thread daemon é o coletor de lixo da JVM (Garbage Collector) 
+	ou a nossa limpeza do banheiro.
+
+--------
+
+    * Ao chamar object.wait() a thread fica no estado de espera
+    * Estado de espera significa WAITING no mundo de threads
+    * Uma thread esperando pode ser notificada pelo método object.notifyAll()
+    * Existem daemon threads para executar tarefas ou serviços secundários
+    * daemons serão automaticamente desligados quando todas as outras threads terminarem
