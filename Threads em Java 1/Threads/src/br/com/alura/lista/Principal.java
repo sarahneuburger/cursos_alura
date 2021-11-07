@@ -27,7 +27,7 @@ public class Principal {
 		
 		new Thread(new TarefaImprimir(lista)).start();
 
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 
 		// Dois threads acessando a mesma lista pode dar problema
 	}

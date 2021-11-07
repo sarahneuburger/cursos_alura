@@ -85,8 +85,17 @@ Thread B - notifyAll - avisão que pode prosseguir
 
 --------
 
-    * Ao chamar object.wait() a thread fica no estado de espera
-    * Estado de espera significa WAITING no mundo de threads
-    * Uma thread esperando pode ser notificada pelo método object.notifyAll()
-    * Existem daemon threads para executar tarefas ou serviços secundários
-    * daemons serão automaticamente desligados quando todas as outras threads terminarem
+    * Ao chamar object.wait() a thread fica no estado de espera;
+    * Estado de espera significa WAITING no mundo de threads;
+    * Uma thread esperando pode ser notificada pelo método object.notifyAll();
+    * Existem daemon threads para executar tarefas ou serviços secundários;
+    * daemons serão automaticamente desligados quando todas as outras threads terminarem;
+    * wait() e notify() sempre devem ser chamados dentro de um bloco synchronized;
+    * Temos que ter cuidado para não mandar um thread esperar quando não há necessidade;
+    * Condições abaixo são necessárias para ocorrer um deadlock: Uma thread segura um recurso 
+	e aguarda por outro;
+    * Quando ocorre um deadlock, somente as threads envolvidas ficam paradas;
+    * Podemos usar um bloco synchronized dentro do outro;
+    * Ao obter os recursos, pode acontecer um impasse (interbloqueio);
+    * O impasse também é chamado deadlock;
+    * Podemos evitar o impasse obtendo as chaves dos objetos na mesma ordem, em todos os threads.

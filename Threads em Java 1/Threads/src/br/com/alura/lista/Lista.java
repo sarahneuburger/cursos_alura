@@ -16,8 +16,9 @@ public class Lista {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			
-			if(this.indice == this.elementos.length) {
+
+			if (this.indice == this.elementos.length) {
+				System.out.println("Lista está cheia, notificando.");
 				this.notify();
 			}
 		}
@@ -29,5 +30,9 @@ public class Lista {
 
 	public String pegaElemento(int posicao) {
 		return this.elementos[posicao];
+	}
+
+	public boolean estaCheia() {
+		return this.indice == this.tamanho();
 	}
 }
