@@ -11,7 +11,7 @@ public class TesteLeitura {
 		
 		// Fluxo de entrada com arquivo
 		FileInputStream fis = new FileInputStream("lorem.txt");
-		InputStreamReader isr = new InputStreamReader(fis);
+		InputStreamReader isr = new InputStreamReader(fis, "UTF-8"); // Passar charset no construtor
 		// Classe para ler os caracteres
 		BufferedReader br = new BufferedReader(isr);
 		

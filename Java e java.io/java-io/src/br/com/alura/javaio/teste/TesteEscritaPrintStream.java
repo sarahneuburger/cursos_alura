@@ -14,7 +14,7 @@ public class TesteEscritaPrintStream {
 		// BufferedWriter bw = new BufferedWriter(osw);
 
 		// PrintWriter ps = new PrintWriter("lorem2.txt");
-		PrintStream ps = new PrintStream("lorem2.txt");
+		PrintStream ps = new PrintStream("lorem2.txt", "UTF-8"); // Definindo o charset via construtor
 		ps.println("Lorem ipsum dolor sit amet, consectetur adipiscing elit");
 		ps.println();
 		ps.println("consequat. Duis aute irure dolor in reprehenderit in voluptate velit");
