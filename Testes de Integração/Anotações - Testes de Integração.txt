@@ -1,0 +1,7 @@
+Anotações - Testes de Integração
+
+Tipos:
+- Integração com o banco de dados;
+- Integração com API externa;
+- Integração com outros métodos;
+- Integração com serviços de mensageria;
