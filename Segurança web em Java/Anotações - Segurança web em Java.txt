@@ -1,0 +1,12 @@
+Anotações - Segurança Web em Java
+
+** SQL Exception ao tentar fazer login passando ' (aspas simples) como senha **
+- Essa exception nos leva a crer que não estamos fazendo uma validação do que um usuário pode estar 
+	passando nos campos de autenticação e com isso, ele pode vir a inserir códigos SQL para 
+	obter informações do sistema. Dessa forma, temos uma vulnerabilidade no sistema a qual 
+	precisa ser corrigida.
+
+- A exception nos informa que um erro de sintaxe SQL ocorreu, com isso, não estamos fazendo uma 
+	validação do que o usuário pode estar inserindo nos campos de email e senha, podendo ele 
+	inserir códigos SQL com o objetivo de obter informações do sistema. Com isso, se faz necessário 
+	fazer alteração no sistema para corrigirmos essa vulnerabilidade.
