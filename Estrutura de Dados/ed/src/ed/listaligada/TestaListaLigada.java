@@ -7,14 +7,30 @@ public class TestaListaLigada {
 		ListaLigada lista = new ListaLigada();
 		
 		System.out.println(lista);
-		lista.adiciona("Sarah");
+		lista.adicionaNoComeco("Sarah");
 		System.out.println(lista);
-		lista.adiciona("Henrique");
+		lista.adicionaNoComeco("Henrique");
 		System.out.println(lista);
-		lista.adiciona("João");
+		lista.adicionaNoComeco("João");
 		System.out.println(lista);
-		lista.adiciona("Marta");
+		lista.adicionaNoComeco("Marta");
+		System.out.println(lista);
 		
+		lista.adiciona("Carlos");
+		System.out.println(lista);
+		
+		lista.adiciona(2, "Mariana");
+		System.out.println(lista);
+		
+		Object retorno = lista.pega(2);
+		System.out.println(retorno);
+		
+		System.out.println(lista.tamanho());
+		
+		lista.removeDoComeco();
+		System.out.println(lista);
+		
+		System.out.println(lista.tamanho());
 	}
 
 }
